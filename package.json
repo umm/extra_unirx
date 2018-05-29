@@ -1,0 +1,30 @@
+{
+  "name": "@umm/extra_unirx",
+  "version": "0.0.0",
+  "description": "ExtraUniRx is utility of UniRx",
+  "homepage": "https://github.com/umm-projects/extra_unirx",
+  "bugs": {
+    "url": "https://github.com/umm-projects/extra_unirx/issues"
+  },
+  "scripts": {
+    "umm:init": "umm-init",
+    "umm:generate_assembly_definition": "umm-generate_assembly_definition",
+    "umm:module:install": "umm-module-install",
+    "umm:module:uninstall": "umm-module-uninstall",
+    "postinstall": "npm run --silent umm:module:install",
+    "postuninstall": "npm run --silent umm:module:uninstall"
+  },
+  "author": "Takuma Maruyama",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git@github.com:umm-projects/extra_unirx"
+  },
+  "files": [
+    "Assets"
+  ],
+  "dependencies": {
+    "@umm/scripts": "umm-projects/scripts#^1.0.0"
+  },
+  "devDependencies": {}
+}
