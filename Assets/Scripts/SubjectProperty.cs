@@ -5,11 +5,11 @@ namespace ExtraUniRx
 {
     /// <summary>
     /// SubjectProperty is similar to ReactiveProperty.
-    /// 
+    ///
     /// Difference:
     /// - Behaviour of IObserver.
     /// - Emit values only if previous value is same.
-    /// 
+    ///
     /// </summary>
     /// <typeparam name="TValue"></typeparam>
     public class SubjectProperty<TValue> : ISubject<TValue>
@@ -51,7 +51,7 @@ namespace ExtraUniRx
             this.Value = value;
         }
 
-        public IDisposable Subscribe(UniRx.IObserver<TValue> observer)
+        public IDisposable Subscribe(IObserver<TValue> observer)
         {
             return this.Subject.Subscribe(observer);
         }

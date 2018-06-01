@@ -3,7 +3,7 @@ using System.Collections.Generic;
 
 namespace ExtraUniRx
 {
-    public class TestObserver<TValue> : UniRx.IObserver<TValue>
+    public class TestObserver<TValue> : IObserver<TValue>
     {
         public int OnCompletedCount { get; private set; }
 
