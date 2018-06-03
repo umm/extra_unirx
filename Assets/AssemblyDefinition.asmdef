@@ -1,0 +1,10 @@
+{
+  "name": "umm@extra_unirx",
+  "references": [
+    "umm@unirx"
+  ],
+  "optionalUnityReferences": [],
+  "includePlatforms": [],
+  "excludePlatforms": [],
+  "allowUnsafeCode": false
+}
