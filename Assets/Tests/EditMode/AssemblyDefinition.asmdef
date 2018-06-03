@@ -1,0 +1,15 @@
+{
+    "name": "Tests.EditMode",
+    "references": [
+        "umm@extra_unirx",
+        "umm@unirx"
+    ],
+    "optionalUnityReferences": [
+        "TestAssemblies"
+    ],
+    "includePlatforms": [
+        "Editor"
+    ],
+    "excludePlatforms": [],
+    "allowUnsafeCode": false
+}
