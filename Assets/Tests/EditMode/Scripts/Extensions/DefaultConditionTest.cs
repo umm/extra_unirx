@@ -43,9 +43,10 @@ namespace ExtraUniRx.Extensions
             intSubject.IsDefault(x => x * 10).Buffer(stopper).Subscribe(x => Assert.AreEqual(3, x.Count));
             intSubject.IsDefault(x => x - 1).Buffer(stopper).Subscribe(x => Assert.AreEqual(5, x.Count));
             intSubject.IsNotDefault(x => x * 10).Buffer(stopper).Subscribe(x => Assert.AreEqual(2, x.Count));
-            classSubject.IsDefault(x => x.Value).Buffer(stopper).Subscribe(x => Assert.AreEqual(2, x.Count));
+            classSubject.IsDefault(x => x.Value).Buffer(stopper).Subscribe(x => Assert.AreEqual(3, x.Count));
             classSubject.IsNotDefault(x => x.Value).Buffer(stopper).Subscribe(x => Assert.AreEqual(1, x.Count));
 
+            UnityEngine.Debug.Log(new Stub());
             intSubject.OnNext(0);
             intSubject.OnNext(1);
             intSubject.OnNext(0);
@@ -54,6 +55,7 @@ namespace ExtraUniRx.Extensions
             classSubject.OnNext(null);
             classSubject.OnNext(new Stub());
             classSubject.OnNext(new Stub {Value = true});
+            classSubject.OnNext(new Stub {Value = false});
 
             stopper.OnNext(Unit.Default);
         }
