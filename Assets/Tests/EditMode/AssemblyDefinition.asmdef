@@ -1,5 +1,5 @@
 {
-    "name": "Tests.EditMode",
+    "name": "umm@extra_unirx-Tests-EditMode",
     "references": [
         "umm@extra_unirx",
         "umm@unirx"
