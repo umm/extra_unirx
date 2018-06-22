@@ -51,9 +51,17 @@ namespace ExtraUniRx
             this.Value = value;
         }
 
+        private Action onSubscribe;
+
+        public Action OnSubscribe
+        {
+            private get { return onSubscribe ?? (onSubscribe = () => { }); }
+            set { onSubscribe = value; }
+        }
+
         public IDisposable Subscribe(IObserver<TValue> observer)
         {
-            return this.Subject.Subscribe(observer);
+            return this.Subject.DoOnSubscribe(OnSubscribe).Subscribe(observer);
         }
     }
 
@@ -62,10 +70,7 @@ namespace ExtraUniRx
         public static SubjectProperty<TValue> ToSubjectProperty<TValue>(this IObservable<TValue> source)
         {
             var subjectProperty = new SubjectProperty<TValue>();
-            source
-                .Do(subjectProperty.OnNext)
-                .DoOnError(subjectProperty.OnError)
-                .DoOnCompleted(subjectProperty.OnCompleted);
+            subjectProperty.OnSubscribe = () => source.Subscribe(subjectProperty);
             return subjectProperty;
         }
     }
