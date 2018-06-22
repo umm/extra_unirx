@@ -36,8 +36,6 @@ namespace ExtraUniRx
 
         private ISubject<TValue> Subject = new Subject<TValue>();
 
-        private IObservable<TValue> Source { get; }
-
         public void OnCompleted()
         {
             this.Subject.OnCompleted();
@@ -55,23 +53,10 @@ namespace ExtraUniRx
 
         public IDisposable Subscribe(IObserver<TValue> observer)
         {
-            if (this.Source != default(IObservable<TValue>))
-            {
-                this.Source.Subscribe(observer);
-            }
             return this.Subject.Subscribe(observer);
         }
 
-        public SubjectProperty()
         {
-        }
-
-        public SubjectProperty(IObservable<TValue> source) : this()
-        {
-            this.Source = source
-                .Do(OnNext)
-                .DoOnError(OnError)
-                .DoOnCompleted(OnCompleted);
         }
     }
 }
