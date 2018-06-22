@@ -55,8 +55,18 @@ namespace ExtraUniRx
         {
             return this.Subject.Subscribe(observer);
         }
+    }
 
+    public static class SubjectPropertyExtensions
+    {
+        public static SubjectProperty<TValue> ToSubjectProperty<TValue>(this IObservable<TValue> source)
         {
+            var subjectProperty = new SubjectProperty<TValue>();
+            source
+                .Do(subjectProperty.OnNext)
+                .DoOnError(subjectProperty.OnError)
+                .DoOnCompleted(subjectProperty.OnCompleted);
+            return subjectProperty;
         }
     }
 }
