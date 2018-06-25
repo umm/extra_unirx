@@ -51,27 +51,9 @@ namespace ExtraUniRx
             this.Value = value;
         }
 
-        private Action onSubscribe;
-
-        public Action OnSubscribe
-        {
-            private get { return onSubscribe ?? (onSubscribe = () => { }); }
-            set { onSubscribe = value; }
-        }
-
         public IDisposable Subscribe(IObserver<TValue> observer)
         {
-            return this.Subject.DoOnSubscribe(OnSubscribe).Subscribe(observer);
-        }
-    }
-
-    public static class SubjectPropertyExtensions
-    {
-        public static SubjectProperty<TValue> ToSubjectProperty<TValue>(this IObservable<TValue> source)
-        {
-            var subjectProperty = new SubjectProperty<TValue>();
-            subjectProperty.OnSubscribe = () => source.Subscribe(subjectProperty);
-            return subjectProperty;
+            return this.Subject.Subscribe(observer);
         }
     }
 }

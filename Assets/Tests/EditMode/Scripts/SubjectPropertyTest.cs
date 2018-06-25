@@ -45,27 +45,5 @@ namespace ExtraUniRx
             Assert.AreEqual(3, observer.OnNextCount);
             Assert.AreEqual(30, observer.OnNextLastValue);
         }
-
-        [Test]
-        public void ToSubjectPropertyTest()
-        {
-            var value = 0;
-            var source = Observable.Return(0).Do(_ => value++);
-
-            // Subscribe していないので発火していないはず
-            Assert.AreEqual(0, value);
-
-            // ToSubjectProperty() 時点では発火しない
-            var subjectProperty = source.ToSubjectProperty();
-            Assert.AreEqual(0, value);
-
-            // Subscribe により発火
-            subjectProperty.Subscribe();
-            Assert.AreEqual(1, value);
-
-            // Subscribe 毎に Source の Subscribe が実行される
-            subjectProperty.Subscribe();
-            Assert.AreEqual(2, value);
-        }
     }
 }
