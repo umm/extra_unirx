@@ -9,7 +9,7 @@ namespace ExtraUniRx
         public void CacheTest()
         {
             var subject = new Subject<Unit>();
-            var observable = subject.Select(_ => 1).Scan((a, b) => a + b).Share().Cache();
+            var observable = subject.Select(_ => 1).Scan((a, b) => a + b).Cache();
 
             var testObserver1 = new TestObserver<int>();
             var disposable1 = observable.Subscribe(testObserver1);
@@ -78,7 +78,7 @@ namespace ExtraUniRx
         public void CacheAllTest()
         {
             var subject = new Subject<Unit>();
-            var observable = subject.Select(_ => 1).Scan((a, b) => a + b).Share().CacheAll();
+            var observable = subject.Select(_ => 1).Scan((a, b) => a + b).CacheAll();
 
             var testObserver1 = new TestObserver<int>();
             var disposable1 = observable.Subscribe(testObserver1);
