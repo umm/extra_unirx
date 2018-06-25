@@ -7,7 +7,7 @@ namespace ExtraUniRx.Operators
 {
     public class CacheObservable<TValue> : OperatorObservableBase<TValue>
     {
-        private IObservable<TValue> Source { get; set; }
+        private IConnectableObservable<TValue> Source { get; set; }
 
         private TValue cachedValue;
 
@@ -25,7 +25,7 @@ namespace ExtraUniRx.Operators
 
         public CacheObservable(IObservable<TValue> source) : base(source.IsRequiredSubscribeOnCurrentThread())
         {
-            Source = source;
+            Source = source.Publish();
         }
 
         private bool HasSubscribedForCache { get; set; }
@@ -35,6 +35,7 @@ namespace ExtraUniRx.Operators
             var observable = Source;
             if (!HasSubscribedForCache)
             {
+                Source.Connect();
                 observable.Subscribe(x => CachedValue = x);
                 HasSubscribedForCache = true;
             }
