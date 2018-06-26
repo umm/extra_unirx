@@ -7,11 +7,16 @@ using UniRx.Operators;
 
 namespace ExtraUniRx.Operators
 {
-    public class CacheAllObservable<TValue> : OperatorObservableBase<TValue>
+    public class CacheAllObservable<TValue> : OperatorObservableBase<TValue>, ICachedObservable<TValue>
     {
         private IConnectableObservable<TValue> Source { get; set; }
 
         private List<TValue> CachedValueList { get; set; }
+
+        public TValue Value
+        {
+            get { return CachedValueList.LastOrDefault(); }
+        }
 
         public CacheAllObservable(IObservable<TValue> source) : base(source.IsRequiredSubscribeOnCurrentThread())
         {
@@ -89,7 +94,7 @@ namespace ExtraUniRx
 {
     public static partial class ObservableExtensions
     {
-        public static IObservable<TValue> CacheAll<TValue>(this IObservable<TValue> source)
+        public static ICachedObservable<TValue> CacheAll<TValue>(this IObservable<TValue> source)
         {
             return new CacheAllObservable<TValue>(source);
         }

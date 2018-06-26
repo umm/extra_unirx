@@ -5,7 +5,7 @@ using UniRx.Operators;
 
 namespace ExtraUniRx.Operators
 {
-    public class CacheObservable<TValue> : OperatorObservableBase<TValue>
+    public class CacheObservable<TValue> : OperatorObservableBase<TValue>, ICachedObservable<TValue>
     {
         private IConnectableObservable<TValue> Source { get; set; }
 
@@ -19,6 +19,11 @@ namespace ExtraUniRx.Operators
                 cachedValue = value;
                 HasSetCachedValue = true;
             }
+        }
+
+        public TValue Value
+        {
+            get { return CachedValue; }
         }
 
         private bool HasSetCachedValue { get; set; }
@@ -99,7 +104,7 @@ namespace ExtraUniRx
 {
     public static partial class ObservableExtensions
     {
-        public static IObservable<TValue> Cache<TValue>(this IObservable<TValue> source)
+        public static ICachedObservable<TValue> Cache<TValue>(this IObservable<TValue> source)
         {
             return new CacheObservable<TValue>(source);
         }
