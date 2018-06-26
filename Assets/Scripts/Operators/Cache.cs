@@ -32,6 +32,7 @@ namespace ExtraUniRx.Operators
 
         protected override IDisposable SubscribeCore(IObserver<TValue> observer, IDisposable cancel)
         {
+            observer = new Cache(observer, cancel);
             if (!HasSubscribedForCache)
             {
                 Source.Connect();
@@ -46,6 +47,50 @@ namespace ExtraUniRx.Operators
             }
 
             return disposable;
+        }
+
+        private class Cache : OperatorObserverBase<TValue, TValue>
+        {
+            public Cache(IObserver<TValue> observer, IDisposable cancel) : base(observer, cancel)
+            {
+            }
+
+            public override void OnNext(TValue value)
+            {
+                try
+                {
+                    observer.OnNext(value);
+                }
+                catch
+                {
+                    Dispose();
+                    throw;
+                }
+            }
+
+            public override void OnError(Exception error)
+            {
+                try
+                {
+                    observer.OnError(error);
+                }
+                finally
+                {
+                    Dispose();
+                }
+            }
+
+            public override void OnCompleted()
+            {
+                try
+                {
+                    observer.OnCompleted();
+                }
+                finally
+                {
+                    Dispose();
+                }
+            }
         }
     }
 }
