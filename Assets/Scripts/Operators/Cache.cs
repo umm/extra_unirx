@@ -28,6 +28,8 @@ namespace ExtraUniRx.Operators
 
         private bool HasSetCachedValue { get; set; }
 
+        private Exception ThrownException { get; set; }
+
         private bool HasCompleted { get; set; }
 
         public CacheObservable(IObservable<TValue> source) : base(source.IsRequiredSubscribeOnCurrentThread())
@@ -45,6 +47,7 @@ namespace ExtraUniRx.Operators
                 Source.Connect();
                 Source.Subscribe(
                     x => CachedValue = x,
+                    ex => ThrownException = ex,
                     () =>
                     {
                         HasCompleted = true;
@@ -54,13 +57,17 @@ namespace ExtraUniRx.Operators
                 HasSubscribedForCache = true;
             }
 
-            var disposable = Source.Subscribe(observer.OnNext, observer.OnError);
+            var disposable = Source.Subscribe(observer.OnNext);
             if (HasSetCachedValue)
             {
                 observer.OnNext(CachedValue);
             }
 
-            if (HasCompleted)
+            if (ThrownException != default(Exception))
+            {
+                observer.OnError(ThrownException);
+            }
+            else if (HasCompleted)
             {
                 observer.OnCompleted();
             }

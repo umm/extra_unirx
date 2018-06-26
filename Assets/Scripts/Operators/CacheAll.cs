@@ -26,6 +26,8 @@ namespace ExtraUniRx.Operators
 
         private bool HasSubscribedForCache { get; set; }
 
+        private Exception ThrownException { get; set; }
+
         private bool HasCompleted { get; set; }
 
         protected override IDisposable SubscribeCore(IObserver<TValue> observer, IDisposable cancel)
@@ -36,6 +38,7 @@ namespace ExtraUniRx.Operators
                 Source.Connect();
                 Source.Subscribe(
                     CachedValueList.Add,
+                    ex => ThrownException = ex,
                     () =>
                     {
                         HasCompleted = true;
@@ -44,13 +47,17 @@ namespace ExtraUniRx.Operators
                 );
                 HasSubscribedForCache = true;
             }
-            var disposable = Source.Subscribe(observer.OnNext, observer.OnError);
+            var disposable = Source.Subscribe(observer.OnNext);
             if (CachedValueList.Any())
             {
                 CachedValueList.ForEach(observer.OnNext);
             }
 
-            if (HasCompleted)
+            if (ThrownException != default(Exception))
+            {
+                observer.OnError(ThrownException);
+            }
+            else if (HasCompleted)
             {
                 observer.OnCompleted();
             }
