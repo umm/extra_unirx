@@ -24,13 +24,13 @@ namespace ExtraUniRx
             var property = new SubjectProperty<int>();
             var observer = new TestObserver<int>();
             property.Subscribe(observer);
-            
+
             Assert.AreEqual(0, observer.OnNextCount);
             property.Value = 10;
-            
+
             Assert.AreEqual(1, observer.OnNextCount);
             Assert.AreEqual(10, observer.OnNextLastValue);
-            
+
             property.Value = 20;
             Assert.AreEqual(2, observer.OnNextCount);
             Assert.AreEqual(20, observer.OnNextLastValue);
@@ -38,7 +38,7 @@ namespace ExtraUniRx
             var observer2 = new TestObserver<int>();
             property.Subscribe(observer2);
             Assert.AreEqual(0, observer2.OnNextCount);
-            
+
             property.Value = 30;
             Assert.AreEqual(1, observer2.OnNextCount);
             Assert.AreEqual(30, observer2.OnNextLastValue);
