@@ -32,15 +32,14 @@ namespace ExtraUniRx.Operators
 
         protected override IDisposable SubscribeCore(IObserver<TValue> observer, IDisposable cancel)
         {
-            var observable = Source;
             if (!HasSubscribedForCache)
             {
                 Source.Connect();
-                observable.Subscribe(x => CachedValue = x);
+                Source.Subscribe(x => CachedValue = x);
                 HasSubscribedForCache = true;
             }
 
-            var disposable = observable.Subscribe(observer.OnNext, observer.OnError);
+            var disposable = Source.Subscribe(observer.OnNext, observer.OnError);
             if (HasSetCachedValue)
             {
                 observer.OnNext(CachedValue);
