@@ -1,4 +1,8 @@
-﻿using UniRx;
+﻿#if (NET_4_6)
+using System;
+#else
+using UniRx;
+#endif
 
 namespace ExtraUniRx
 {
