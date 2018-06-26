@@ -26,19 +26,33 @@ namespace ExtraUniRx.Operators
 
         private bool HasSubscribedForCache { get; set; }
 
+        private bool HasCompleted { get; set; }
+
         protected override IDisposable SubscribeCore(IObserver<TValue> observer, IDisposable cancel)
         {
             observer = new CacheAll(observer, cancel);
             if (!HasSubscribedForCache)
             {
                 Source.Connect();
-                Source.Subscribe(CachedValueList.Add);
+                Source.Subscribe(
+                    CachedValueList.Add,
+                    () =>
+                    {
+                        HasCompleted = true;
+                        observer.OnCompleted();
+                    }
+                );
                 HasSubscribedForCache = true;
             }
             var disposable = Source.Subscribe(observer.OnNext, observer.OnError);
             if (CachedValueList.Any())
             {
                 CachedValueList.ForEach(observer.OnNext);
+            }
+
+            if (HasCompleted)
+            {
+                observer.OnCompleted();
             }
 
             return disposable;
