@@ -12,7 +12,7 @@
 ## Install
 
 ```shell
-yarn add "umm-projects/extra_unirx#^1.0.0"
+yarn add "umm/extra_unirx#^1.0.0"
 ```
 
 ## Usage

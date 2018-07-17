@@ -2,9 +2,9 @@
   "name": "@umm/extra_unirx",
   "version": "1.3.0",
   "description": "ExtraUniRx is utility of UniRx",
-  "homepage": "https://github.com/umm-projects/extra_unirx",
+  "homepage": "https://github.com/umm/extra_unirx",
   "bugs": {
-    "url": "https://github.com/umm-projects/extra_unirx/issues"
+    "url": "https://github.com/umm/extra_unirx/issues"
   },
   "scripts": {
     "umm:init": "umm-init",
@@ -18,14 +18,14 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git@github.com:umm-projects/extra_unirx"
+    "url": "git@github.com:umm/extra_unirx"
   },
   "files": [
     "Assets"
   ],
   "dependencies": {
-    "@umm/scripts": "umm-projects/scripts#^1.0.0",
-    "@umm/unirx": "umm-projects/unirx#^2.0.0"
+    "@umm/scripts": "umm/scripts#^1.0.0",
+    "@umm/unirx": "umm/unirx#^2.0.0"
   },
   "devDependencies": {}
 }
