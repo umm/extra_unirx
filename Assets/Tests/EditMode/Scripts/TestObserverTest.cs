@@ -1,8 +1,9 @@
 ﻿using System;
+using ExtraUniRx;
 using NUnit.Framework;
 using UniRx;
 
-namespace ExtraUniRx
+namespace EditTest.ExtraUniRx
 {
     public class TestObserverTest
     {
