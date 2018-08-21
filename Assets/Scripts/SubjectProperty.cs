@@ -3,6 +3,10 @@ using UniRx;
 
 namespace ExtraUniRx
 {
+    /// <summary>
+    /// Interface for SubjectProperty act as ISubject and IReactiveProperty
+    /// </summary>
+    /// <typeparam name="TValue"></typeparam>
     public interface ISubjectProperty<TValue> : ISubject<TValue>, IReactiveProperty<TValue>
     {
     }
