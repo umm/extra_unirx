@@ -46,5 +46,25 @@ namespace EditTest.ExtraUniRx
             Assert.AreEqual(3, observer.OnNextCount);
             Assert.AreEqual(30, observer.OnNextLastValue);
         }
+
+        [Test]
+        public void HasValueTest()
+        {
+            var property1 = new SubjectProperty<int>();
+
+            Assert.AreEqual(false, property1.HasValue);
+
+            property1.Value = 1;
+
+            Assert.AreEqual(true, property1.HasValue);
+
+            var property2 = new SubjectProperty<int>();
+
+            Assert.AreEqual(false, property2.HasValue);
+
+            property2.OnNext(2);
+
+            Assert.AreEqual(true, property2.HasValue);
+        }
     }
 }
