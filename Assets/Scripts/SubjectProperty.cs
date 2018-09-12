@@ -32,10 +32,10 @@ namespace ExtraUniRx
                 {
                     HasValue = true;
                 }
-                internalValue = value;
-                subject.OnNext(value);
+                this.internalValue = value;
+                this.Subject.OnNext(value);
             }
-            get { return internalValue; }
+            get { return this.internalValue; }
         }
 
         public bool HasValue { get; private set; }
@@ -45,29 +45,29 @@ namespace ExtraUniRx
         /// </summary>
         public TValue InternalValue
         {
-            set { internalValue = value; }
+            set { this.internalValue = value; }
         }
 
-        private readonly ISubject<TValue> subject = new Subject<TValue>();
+        private ISubject<TValue> Subject { get; } = new Subject<TValue>();
 
         public void OnCompleted()
         {
-            subject.OnCompleted();
+            this.Subject.OnCompleted();
         }
 
         public void OnError(Exception error)
         {
-            subject.OnError(error);
+            this.Subject.OnError(error);
         }
 
         public void OnNext(TValue value)
         {
-            Value = value;
+            this.Value = value;
         }
 
         public IDisposable Subscribe(IObserver<TValue> observer)
         {
-            return subject.Subscribe(observer);
+            return this.Subject.Subscribe(observer);
         }
     }
 }
