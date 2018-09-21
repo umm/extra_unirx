@@ -4,16 +4,6 @@ namespace ExtraUniRx
 {
     public static class TenseObserverExtensions
     {
-        public static void On<T>(this IObserver<Tuple<T, Tense>> self, T value, Tense tense)
-        {
-            self.OnNext(new Tuple<T, Tense>(value, tense));
-        }
-
-        public static void On(this IObserver<Tense> self, Tense tense)
-        {
-            self.OnNext(tense);
-        }
-
         public static void Will<T>(this IObserver<Tuple<T, Tense>> self, T value)
         {
             self.On(value, Tense.Will);
@@ -42,6 +32,16 @@ namespace ExtraUniRx
         public static void Did(this IObserver<Tense> self)
         {
             self.On(Tense.Did);
+        }
+
+        private static void On<T>(this IObserver<Tuple<T, Tense>> self, T value, Tense tense)
+        {
+            self.OnNext(new Tuple<T, Tense>(value, tense));
+        }
+
+        private static void On(this IObserver<Tense> self, Tense tense)
+        {
+            self.OnNext(tense);
         }
     }
 }
