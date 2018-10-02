@@ -47,7 +47,6 @@ namespace EditTest.ExtraUniRx
             classSubject.IsDefault(x => x.Value).Buffer(stopper).Subscribe(x => Assert.AreEqual(3, x.Count));
             classSubject.IsNotDefault(x => x.Value).Buffer(stopper).Subscribe(x => Assert.AreEqual(1, x.Count));
 
-            UnityEngine.Debug.Log(new Stub());
             intSubject.OnNext(0);
             intSubject.OnNext(1);
             intSubject.OnNext(0);
