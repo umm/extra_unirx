@@ -20,11 +20,11 @@ namespace ExtraUniRx
     ///
     /// </summary>
     /// <typeparam name="TValue"></typeparam>
-    public class SubjectProperty<TValue> : ISubjectProperty<TValue>
+    public class SubjectProperty<TValue> : ReactiveProperty<TValue>, ISubjectProperty<TValue>
     {
         private TValue internalValue;
 
-        public TValue Value
+        public new TValue Value
         {
             set
             {
@@ -38,7 +38,7 @@ namespace ExtraUniRx
             get { return this.internalValue; }
         }
 
-        public bool HasValue { get; private set; }
+        public new bool HasValue { get; private set; }
 
         /// <summary>
         /// Set value without any updates. This is for using initialization
@@ -65,7 +65,7 @@ namespace ExtraUniRx
             this.Value = value;
         }
 
-        public IDisposable Subscribe(IObserver<TValue> observer)
+        public new IDisposable Subscribe(IObserver<TValue> observer)
         {
             return this.Subject.Subscribe(observer);
         }
