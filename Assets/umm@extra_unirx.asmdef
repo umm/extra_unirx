@@ -1,7 +1,8 @@
 {
   "name": "umm@extra_unirx",
   "references": [
-    "umm@unirx"
+    "umm@unirx",
+    "umm@unirx-Async"
   ],
   "optionalUnityReferences": [],
   "includePlatforms": [],
