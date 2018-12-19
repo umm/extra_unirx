@@ -7,8 +7,10 @@ namespace ExtraUniRx
     /// Interface for SubjectProperty act as ISubject and IReactiveProperty
     /// </summary>
     /// <typeparam name="TValue"></typeparam>
-    public interface ISubjectProperty<TValue> : ISubject<TValue>, IReactiveProperty<TValue>
+    public interface ISubjectProperty<TValue> : ISubject<TValue>
     {
+        TValue Value { get; set; }
+        bool HasValue { get; }
     }
 
     /// <summary>
@@ -20,11 +22,11 @@ namespace ExtraUniRx
     ///
     /// </summary>
     /// <typeparam name="TValue"></typeparam>
-    public class SubjectProperty<TValue> : ReactiveProperty<TValue>, ISubjectProperty<TValue>
+    public class SubjectProperty<TValue> : ISubjectProperty<TValue>
     {
         private TValue internalValue;
 
-        public new TValue Value
+        public TValue Value
         {
             set
             {
@@ -38,7 +40,7 @@ namespace ExtraUniRx
             get { return this.internalValue; }
         }
 
-        public new bool HasValue { get; private set; }
+        public bool HasValue { get; private set; }
 
         /// <summary>
         /// Set value without any updates. This is for using initialization
@@ -65,7 +67,7 @@ namespace ExtraUniRx
             this.Value = value;
         }
 
-        public new IDisposable Subscribe(IObserver<TValue> observer)
+        public IDisposable Subscribe(IObserver<TValue> observer)
         {
             return this.Subject.Subscribe(observer);
         }
