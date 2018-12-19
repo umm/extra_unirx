@@ -7,8 +7,10 @@ namespace ExtraUniRx
     /// Interface for SubjectProperty act as ISubject and IReactiveProperty
     /// </summary>
     /// <typeparam name="TValue"></typeparam>
-    public interface ISubjectProperty<TValue> : ISubject<TValue>, IReactiveProperty<TValue>
+    public interface ISubjectProperty<TValue> : ISubject<TValue>
     {
+        TValue Value { get; set; }
+        bool HasValue { get; }
     }
 
     /// <summary>
