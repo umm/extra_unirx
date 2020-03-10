@@ -14,7 +14,7 @@
 ### With Unity Package Manager
 
 ```bash
-upm add package dev.upm-packages.extra_unirx
+upm add package dev.upm-packages.extra-unirx
 ```
 
 Note: `upm` command is provided by [this repository](https://github.com/upm-packages/upm-cli).
@@ -25,7 +25,7 @@ You can also edit `Packages/manifest.json` directly.
 {
   "dependencies": {
     // (snip)
-    "dev.upm-packages.extra_unirx": "[latest version]",
+    "dev.upm-packages.extra-unirx": "[latest version]",
     // (snip)
   },
   "scopedRegistries": [
@@ -41,7 +41,6 @@ You can also edit `Packages/manifest.json` directly.
 ```
 
 ### Any other else (classical umm style)
-
 
 ```shell
 yarn add "umm/extra_unirx#^1.0.0"
