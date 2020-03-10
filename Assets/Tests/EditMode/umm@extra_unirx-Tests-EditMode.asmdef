@@ -1,15 +1,24 @@
 {
     "name": "umm@extra_unirx-Tests-EditMode",
     "references": [
-        "umm@extra_unirx",
-        "umm@unirx"
-    ],
-    "optionalUnityReferences": [
-        "TestAssemblies"
+        "GUID:fd54c2413c75f43a1a721bc960f2f443",
+        "GUID:560b04d1a97f54a4e82edc0cbbb69285",
+        "GUID:27619889b8ba8c24980f49ee34dbb44a",
+        "GUID:0acc523941302664db1f4e527237feb3"
     ],
     "includePlatforms": [
         "Editor"
     ],
     "excludePlatforms": [],
-    "allowUnsafeCode": false
+    "allowUnsafeCode": false,
+    "overrideReferences": true,
+    "precompiledReferences": [
+        "nunit.framework.dll"
+    ],
+    "autoReferenced": false,
+    "defineConstraints": [
+        "UNITY_INCLUDE_TESTS"
+    ],
+    "versionDefines": [],
+    "noEngineReferences": false
 }
