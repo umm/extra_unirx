@@ -1,4 +1,6 @@
 .npmignore
+yarn-debug.log*
+yarn-error.log*
 Modules/
 Modules.meta
 Plugins/
