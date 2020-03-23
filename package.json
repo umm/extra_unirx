@@ -1,6 +1,6 @@
 {
   "name": "@umm/extra_unirx",
-  "version": "1.4.0",
+  "version": "1.4.1",
   "description": "ExtraUniRx is utility of UniRx",
   "homepage": "https://github.com/umm/extra_unirx",
   "bugs": {
@@ -24,8 +24,7 @@
     "Assets"
   ],
   "dependencies": {
-    "@umm/scripts": "umm/scripts#^1.0.0",
-    "@umm/unirx": "umm/unirx#^2.0.0"
+    "@umm/scripts": "umm/scripts#^1.0.0"
   },
   "devDependencies": {}
 }

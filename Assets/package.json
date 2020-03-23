@@ -4,17 +4,12 @@
   "version": "1.4.0",
   "unity": "2019.3",
   "description": "",
-  "author": {
-    "name": "KidsStar System Development Team",
-    "url": "https://www.kidsstar.co.jp/",
-    "email": "system@kidsstar.co.jp"
-  },
+  "author": "Takuma Maruyama",
   "license": "UNLICENSED",
   "keywords": [],
   "category": "",
   "dependencies": {
-    "jp.cysharp.unirx": "7.1.0",
-    "jp.cysharp.unitask": "1.0.0"
+    "jp.cysharp.unirx": "7.1.0"
   },
   "repository": {
     "type": "git",
