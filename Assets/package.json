@@ -4,8 +4,12 @@
   "version": "1.4.1",
   "unity": "2019.3",
   "description": "",
+  "homepage": "https://github.com/umm/extra_unirx",
+  "bugs": {
+    "url": "https://github.com/umm/extra_unirx/issues"
+  },
   "author": "Takuma Maruyama",
-  "license": "UNLICENSED",
+  "license": "MIT",
   "keywords": [],
   "category": "",
   "dependencies": {
